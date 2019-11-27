@@ -12,13 +12,16 @@ import akka.stream.javadsl.Flow;
 import org.asynchttpclient.AsyncHttpClient;
 
 import java.util.concurrent.CompletionStage;
+import static org.asynchttpclient.Dsl.asyncHttpClient;
 
 public class App {
+    private static String HOST = "localhost";
+    private static int PORT = 8080;
     ActorSystem system = ActorSystem.create("routes");
     final Http http = Http.get(system);
     final ActorMaterializer materializer = ActorMaterializer.create(system);
 
-    AsyncHttpClient httpClient = asyncHtt
+    AsyncHttpClient httpClient = asyncHttpClient();
 
     Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = app.createRoute(system, router).flow(system, materializer);
     CompletionStage<ServerBinding> binding = http.bindAndHandle(
