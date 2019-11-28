@@ -10,6 +10,6 @@ public class TestResult {
     }
 
     public  Url getTest(){
-        
+        return test;
     }
 }
