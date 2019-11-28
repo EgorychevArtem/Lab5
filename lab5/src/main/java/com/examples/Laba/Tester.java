@@ -67,9 +67,9 @@ public class Tester {
                 .thenCompose(result -> {
                     Optional<TestResult> res = result.get();
                     if(res.isPresent()){
-                        CompletableFuture.completedFuture(res.get());
+                        return CompletableFuture.completedFuture(res.get());
                     } else{
-                        RunTest(test);
+                        return RunTest(test);
                     }
                 });
     }
