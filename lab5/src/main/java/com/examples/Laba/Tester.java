@@ -10,6 +10,7 @@ import akka.http.javadsl.model.Query;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import akka.stream.javadsl.Sink;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.Pattern;
 import org.asynchttpclient.AsyncHttpClient;
 import akka.http.javadsl.model.*;
@@ -58,6 +59,7 @@ public class Tester {
     }
 
     public CompletionStage<TestResult> RunTest(Url test) {
-
+        final Sink<Url, CompletionStage<Long>> testSink = Flow.of(Url.class)
+                .mapConcat()
     }
 }
