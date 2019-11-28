@@ -44,5 +44,7 @@ public class Tester {
 
     public CompletionStage<TestResult> TestExecution(Url test){
         return Patterns.ask(storage, test, Duration.ofSeconds(5))
+                .thenApply(o -> (ReturnMessage) o)
+                .thenCompose()
     }
 }
