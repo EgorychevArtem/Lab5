@@ -16,6 +16,7 @@ import org.asynchttpclient.AsyncHttpClient;
 import akka.http.javadsl.model.*;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -62,6 +63,9 @@ public class Tester {
     public CompletionStage<TestResult> RunTest(Url test) {
         final Sink<Url, CompletionStage<Long>> testSink = Flow.of(Url.class)
                 .mapConcat(m -> Collections.nCopies(m.count, m.url))
-                .mapAsync(10, )
+                .mapAsync(10, m->{
+                    Instant StartRequestTime = Instant.now();
+                    return asyncHttpClient.prepareGet(m).execute()
+                })
     }
 }
