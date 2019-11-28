@@ -34,6 +34,7 @@ public class Tester {
         return Flow.of(HttpRequest.class)
                 .map(this::parseRequest)
                 .mapAsync(10,this::TestExecution)
+                .map();
     }
 
     public Url parseRequest(HttpRequest req){
