@@ -27,7 +27,7 @@ public class App {
 
         AsyncHttpClient httpClient = asyncHttpClient();
 
-        Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = ;
+        Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = new Tester(asyncHttpClient(), system, materializer);
         CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
                 ConnectHttp.toHost(HOST, PORT),
