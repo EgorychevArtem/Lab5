@@ -16,6 +16,7 @@ import akka.http.javadsl.model.*;
 
 import java.time.Duration;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 public class Tester {
@@ -45,6 +46,16 @@ public class Tester {
     public CompletionStage<TestResult> TestExecution(Url test){
         return Patterns.ask(storage, test, Duration.ofSeconds(5))
                 .thenApply(o -> (ReturnMessage) o)
-                .thenCompose()
+                .thenCompose(result -> {
+                    Optional<TestResult> res = result.get();
+                    if(res.isPresent()){
+                        CompletableFuture.completedFuture(res.get());
+                    } else{
+                        RunTest(test);
+                    }
+                });
+    }
+
+    private void RunTest(Url test) {
     }
 }
