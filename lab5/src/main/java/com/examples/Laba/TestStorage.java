@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TestStorage extends AbstractActor {
-    Map<Url, Long> storage = new HashMap<Url, Long>();
+    Map<Url, Long> storage = new HashMap<>();
 
     @Override
     public Receive createReceive() {
-        
+
     }
 
 }
