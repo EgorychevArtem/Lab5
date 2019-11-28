@@ -27,6 +27,7 @@ public class Tester {
     public Flow<HttpRequest, HttpResponse, NotUsed> createRoute(){
         return Flow.of(HttpRequest.class)
                 .map(this::parseRequest)
+                .mapAsync(10,)
     }
 
     public Url parseRequest(HttpRequest req){
