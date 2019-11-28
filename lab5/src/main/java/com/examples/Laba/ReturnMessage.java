@@ -7,5 +7,7 @@ public class ReturnMessage {
         this.result = result;
     }
 
-    
+    public TestResult getResult(){
+        return result;
+    }
 }
