@@ -15,7 +15,7 @@ public class TestStorage extends AbstractActor {
         return receiveBuilder()
                 .match(Url.class, m-> {
                     getSender().tell(
-                            new ReturnMessage(new TestResult(m, storage.get(m)),
+                            new ReturnMessage(new TestResult(m, storage.get(m))),
                             ActorRef.noSender()
                     );
                 })
