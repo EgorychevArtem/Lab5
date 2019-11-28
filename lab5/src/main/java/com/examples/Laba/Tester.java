@@ -33,6 +33,6 @@ public class Tester {
         Query query = req.getUri().query();
         Optional<String> testUrl = query.get("testUrl");
         Optional<String> count = query.get("count");
-        return new Url(testUrl.get())
+        return new Url(testUrl.get(), Integer.parseInt(count.get()));
     }
 }
