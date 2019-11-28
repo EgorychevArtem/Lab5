@@ -13,6 +13,6 @@ public class Tester {
     public Tester(AsyncHttpClient asyncHttpClient, ActorSystem system, ActorMaterializer materializer){
         this.asyncHttpClient = asyncHttpClient;
         this.materializer = materializer;
-        this.storage = 
+        this.storage = system.actorOf()
     }
 }
