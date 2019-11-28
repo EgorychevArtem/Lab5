@@ -13,7 +13,9 @@ import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
 import akka.stream.javadsl.Source;
+import akka.util.ByteString;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.Pattern;
 import org.asynchttpclient.AsyncHttpClient;
 import akka.http.javadsl.model.*;
@@ -47,7 +49,9 @@ public class Tester {
         storage.tell(result, ActorRef.noSender());
         return HttpResponse.create()
                 .withStatus(StatusCodes.OK)
-                .withEntity(ContentTypes.APPLICATION_JSON)
+                .withEntity(ContentTypes.APPLICATION_JSON, ByteString.fromString(
+                        new ObjectMapper().writer()
+                ))
     }
 
     public Url parseRequest(HttpRequest req){
