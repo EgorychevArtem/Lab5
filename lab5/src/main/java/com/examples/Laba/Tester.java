@@ -75,6 +75,7 @@ public class Tester {
                 })
                 .toMat(Sink.fold(0L,Long::sum), Keep.right());
 
-        return Source.from()
+        return Source.from(Collections.singleton(test))
+                .toMat(testSink, Keep.right())
     }
 }
