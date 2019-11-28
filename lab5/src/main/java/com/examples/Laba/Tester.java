@@ -11,6 +11,8 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import org.asynchttpclient.AsyncHttpClient;
 
+import java.util.Optional;
+
 public class Tester {
     AsyncHttpClient asyncHttpClient;
     ActorMaterializer materializer;
@@ -28,6 +30,8 @@ public class Tester {
     }
 
     public Url parseRequest(HttpRequest req){
+        Query query = req.getUri().query();
+        Optional<String> testUrl = query.get("testUrl");
         
     }
 }
