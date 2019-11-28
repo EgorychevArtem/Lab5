@@ -6,6 +6,7 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
+import akka.http.javadsl.model.Query;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import org.asynchttpclient.AsyncHttpClient;
@@ -22,6 +23,9 @@ public class Tester {
     }
 
     public Flow<HttpRequest, HttpResponse, NotUsed> createRoute(){
-
+        return Flow.of(HttpRequest.class)
+                .map(HttpRequest.class, m ->{
+                    Query query = m.
+                })
     }
 }
