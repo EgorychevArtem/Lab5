@@ -2,6 +2,7 @@ package com.examples.Laba;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
+import akka.actor.Props;
 import akka.stream.ActorMaterializer;
 import org.asynchttpclient.AsyncHttpClient;
 
@@ -13,6 +14,6 @@ public class Tester {
     public Tester(AsyncHttpClient asyncHttpClient, ActorSystem system, ActorMaterializer materializer){
         this.asyncHttpClient = asyncHttpClient;
         this.materializer = materializer;
-        this.storage = system.actorOf()
+        this.storage = system.actorOf(Props.create())
     }
 }
