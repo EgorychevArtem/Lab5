@@ -1,6 +1,7 @@
 package com.examples.Laba;
 
 import akka.actor.AbstractActor;
+import akka.actor.ActorRef;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,8 +15,9 @@ public class TestStorage extends AbstractActor {
         return receiveBuilder()
                 .match(Url.class, m-> {
                     getSender().tell(
-                            TestResult test = new TestResult(m, storage)
-                            new ReturnMessage()
+                            TestResult test = new TestResult(m, storage.get(m))
+                            new ReturnMessage(test);
+                    ActorRef.noSender();
                     );
                 })
                 .build();
