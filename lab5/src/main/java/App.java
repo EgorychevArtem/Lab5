@@ -15,9 +15,9 @@ import java.util.concurrent.CompletionStage;
 import static org.asynchttpclient.Dsl.asyncHttpClient;
 
 public class App {
+    private static String HOST = "localhost";
+    private static int PORT = 8080;
     public static void main(String[] args) {
-        private static String HOST = "localhost";
-        private static int PORT = 8080;
         ActorSystem system = ActorSystem.create("routes");
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
