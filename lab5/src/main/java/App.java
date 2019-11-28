@@ -14,25 +14,26 @@ import org.asynchttpclient.AsyncHttpClient;
 import java.util.concurrent.CompletionStage;
 import static org.asynchttpclient.Dsl.asyncHttpClient;
 
-public class App throws IO{
-    private static String HOST = "localhost";
-    private static int PORT = 8080;
-    ActorSystem system = ActorSystem.create("routes");
-    final Http http = Http.get(system);
-    final ActorMaterializer materializer = ActorMaterializer.create(system);
+public class App {
+    public static void main(String[] args) {
+        private static String HOST = "localhost";
+        private static int PORT = 8080;
+        ActorSystem system = ActorSystem.create("routes");
+        final Http http = Http.get(system);
+        final ActorMaterializer materializer = ActorMaterializer.create(system);
 
-    AsyncHttpClient httpClient = asyncHttpClient();
+        AsyncHttpClient httpClient = asyncHttpClient();
 
-    Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = ;
-    CompletionStage<ServerBinding> binding = http.bindAndHandle(
-            routeFlow,
-            ConnectHttp.toHost(HOST, PORT),
-            materializer
-    );
-    System.out.println("Server online at http://localhost:8080/\nPress RETURN to stop...");
-    System.in.read();
-    binding
-            .thenCompose(ServerBinding::unbind)
-            .thenAccept(unbound -> system.terminate());
-
+        Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = ;
+        CompletionStage<ServerBinding> binding = http.bindAndHandle(
+                routeFlow,
+                ConnectHttp.toHost(HOST, PORT),
+                materializer
+        );
+        System.out.println("Server online at http://localhost:8080/\nPress RETURN to stop...");
+        System.in.read();
+        binding
+                .thenCompose(ServerBinding::unbind)
+                .thenAccept(unbound -> system.terminate());
+    }
 }
