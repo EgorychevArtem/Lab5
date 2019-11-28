@@ -1,5 +1,7 @@
 package com.examples.Laba;
 
+import java.util.Optional;
+
 public class TestResult {
     Url test;
     Long res;

@@ -1,5 +1,7 @@
 package com.examples.Laba;
 
+import java.util.Optional;
+
 public class ReturnMessage {
     TestResult result;
 
@@ -9,5 +11,9 @@ public class ReturnMessage {
 
     public TestResult getResult(){
         return result;
+    }
+
+    public Optional<TestResult> get(){
+        if(res)
     }
 }
