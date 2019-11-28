@@ -71,5 +71,6 @@ public class Tester {
                                     Duration.between(StartRequestTime, Instant.now()).getSeconds()
                             ));
                 })
+                .toMat(Sink.fold(0,))
     }
 }
