@@ -11,6 +11,8 @@ public class Tester {
     ActorRef storage;
 
     public Tester(AsyncHttpClient asyncHttpClient, ActorSystem system, ActorMaterializer materializer){
-        
+        this.asyncHttpClient = asyncHttpClient;
+        this.materializer = materializer;
+        this.storage = 
     }
 }
