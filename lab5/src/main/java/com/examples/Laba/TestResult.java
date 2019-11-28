@@ -12,4 +12,8 @@ public class TestResult {
     public  Url getTest(){
         return test;
     }
+
+    public  Long getRes(){
+        return res;
+    }
 }
