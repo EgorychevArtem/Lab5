@@ -19,6 +19,9 @@ public class TestStorage extends AbstractActor {
                             ActorRef.noSender()
                     );
                 })
+                .match(TestResult.class, m ->{
+                    storage.put(m.test, m.res);
+                })
                 .build();
     }
 
