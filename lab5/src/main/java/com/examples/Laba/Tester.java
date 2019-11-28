@@ -67,7 +67,9 @@ public class Tester {
                     Instant StartRequestTime = Instant.now();
                     return asyncHttpClient.prepareGet(m).execute()
                             .toCompletableFuture()
-                            .thenCompose()
+                            .thenCompose(r -> CompletableFuture.completedFuture(
+                                    Duration.between(StartRequestTime, Instant.now()).getSeconds()
+                            ));
                 })
     }
 }
