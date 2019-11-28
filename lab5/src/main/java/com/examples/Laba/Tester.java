@@ -44,6 +44,7 @@ public class Tester {
 
     private HttpResponse CreateResponse(TestResult result) {
         storage.tell(result, ActorRef.noSender());
+        return HttpResponse.create()
     }
 
     public Url parseRequest(HttpRequest req){
