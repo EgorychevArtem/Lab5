@@ -42,7 +42,8 @@ public class Tester {
                 .map(this::CreateResponse);
     }
 
-    private CreateResponse(TestResult result) {
+    private HttpResponse CreateResponse(TestResult result) {
+        storage.tell(result, ActorRef.noSender());
     }
 
     public Url parseRequest(HttpRequest req){
