@@ -14,7 +14,7 @@ import org.asynchttpclient.AsyncHttpClient;
 import java.util.concurrent.CompletionStage;
 import static org.asynchttpclient.Dsl.asyncHttpClient;
 
-public class App {
+public class App throws IO{
     private static String HOST = "localhost";
     private static int PORT = 8080;
     ActorSystem system = ActorSystem.create("routes");
@@ -29,10 +29,10 @@ public class App {
             ConnectHttp.toHost(HOST, PORT),
             materializer
     );
-        System.out.println("Server online at http://localhost:8080/\nPress RETURN to stop...");
-        System.in.read();
-        binding
-                .thenCompose(ServerBinding::unbind)
+    System.out.println("Server online at http://localhost:8080/\nPress RETURN to stop...");
+    System.in.read();
+    binding
+            .thenCompose(ServerBinding::unbind)
             .thenAccept(unbound -> system.terminate());
 
 }
