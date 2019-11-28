@@ -5,6 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TestStorage {
-    Map<Long, ArrayList<Test>> storage = new HashMap<>();
+    Map<Url, Long> storage = new HashMap<Url, Long>();
 
 }
