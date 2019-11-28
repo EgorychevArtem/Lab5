@@ -12,6 +12,7 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
+import akka.stream.javadsl.Source;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.Pattern;
 import org.asynchttpclient.AsyncHttpClient;
 import akka.http.javadsl.model.*;
@@ -73,5 +74,7 @@ public class Tester {
                             ));
                 })
                 .toMat(Sink.fold(0L,Long::sum), Keep.right());
+
+        return Source.from()
     }
 }
