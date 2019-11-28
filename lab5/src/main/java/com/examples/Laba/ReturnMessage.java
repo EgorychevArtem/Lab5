@@ -6,4 +6,6 @@ public class ReturnMessage {
     ReturnMessage(TestResult result){
         this.result = result;
     }
+
+    
 }
