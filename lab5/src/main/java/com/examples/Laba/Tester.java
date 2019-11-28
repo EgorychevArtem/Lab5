@@ -42,10 +42,11 @@ public class Tester {
                 .map(this::CreateResponse);
     }
 
-    private HttpResponse CreateResponse(TestResult result) {
+    private HttpResponse CreateResponse(TestResult result) throws Js {
         storage.tell(result, ActorRef.noSender());
         return HttpResponse.create()
-                .withStatus(StatusCode.OK)
+                .withStatus(StatusCodes.OK)
+                .withEntity()
     }
 
     public Url parseRequest(HttpRequest req){
