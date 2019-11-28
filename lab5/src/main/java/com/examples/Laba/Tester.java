@@ -66,6 +66,8 @@ public class Tester {
                 .mapAsync(10, m->{
                     Instant StartRequestTime = Instant.now();
                     return asyncHttpClient.prepareGet(m).execute()
+                            .toCompletableFuture()
+                            .thenCompose()
                 })
     }
 }
