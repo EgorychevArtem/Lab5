@@ -13,6 +13,7 @@ import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
 import akka.stream.javadsl.Source;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.Pattern;
 import org.asynchttpclient.AsyncHttpClient;
 import akka.http.javadsl.model.*;
@@ -42,11 +43,11 @@ public class Tester {
                 .map(this::CreateResponse);
     }
 
-    private HttpResponse CreateResponse(TestResult result) throws Js {
+    private HttpResponse CreateResponse(TestResult result) throws JsonProcessingException {
         storage.tell(result, ActorRef.noSender());
         return HttpResponse.create()
                 .withStatus(StatusCodes.OK)
-                .withEntity()
+                .withEntity(ContentType.APP)
     }
 
     public Url parseRequest(HttpRequest req){
