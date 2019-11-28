@@ -5,6 +5,7 @@ public class Url {
     Integer count;
 
     public Url(String url, Integer count){
-        this.url
+        this.url = url;
+        this.count = count;
     }
 }
