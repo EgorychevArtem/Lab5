@@ -8,4 +8,8 @@ public class TestResult {
         this.res = res;
         this.test = test;
     }
+
+    public  Url getTest(){
+        
+    }
 }
