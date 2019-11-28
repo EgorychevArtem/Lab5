@@ -47,7 +47,7 @@ public class Tester {
         storage.tell(result, ActorRef.noSender());
         return HttpResponse.create()
                 .withStatus(StatusCodes.OK)
-                .withEntity(ContentType.APP)
+                .withEntity(ContentTypes.APPLICATION_JSON)
     }
 
     public Url parseRequest(HttpRequest req){
