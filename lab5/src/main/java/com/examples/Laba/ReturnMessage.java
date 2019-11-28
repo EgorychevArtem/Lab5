@@ -7,7 +7,7 @@ import java.util.Optional;
 public class ReturnMessage {
     TestResult result;
 
-    ReturnMessage(TestResult result, ActorRef actorRef){
+    public ReturnMessage(TestResult result){
         this.result = result;
     }
 
