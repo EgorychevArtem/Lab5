@@ -39,7 +39,10 @@ public class Tester {
         return Flow.of(HttpRequest.class)
                 .map(this::parseRequest)
                 .mapAsync(parallelism,this::TestExecution)
-                .map();
+                .map(this::CreateResponse);
+    }
+
+    private CreateResponse(TestResult result) {
     }
 
     public Url parseRequest(HttpRequest req){
