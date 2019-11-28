@@ -14,6 +14,4 @@ public class TestStorage extends AbstractActor {
         return null;
     }
 
-    @Override
-    public Receive
 }
