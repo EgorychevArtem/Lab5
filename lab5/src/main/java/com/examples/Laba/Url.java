@@ -13,7 +13,7 @@ public class Url {
         return url;
     }
 
-    public String getCount(){
+    public Integer getCount(){
         return count;
     }
 }
