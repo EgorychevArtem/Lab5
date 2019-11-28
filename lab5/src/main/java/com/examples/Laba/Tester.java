@@ -78,5 +78,6 @@ public class Tester {
         return Source.from(Collections.singleton(test))
                 .toMat(testSink, Keep.right())
                 .run(materializer)
+                .thenApply(s -> new TestResult(test, s/test.count));
     }
 }
