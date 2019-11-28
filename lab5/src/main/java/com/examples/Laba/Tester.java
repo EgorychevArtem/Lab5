@@ -50,7 +50,7 @@ public class Tester {
         return HttpResponse.create()
                 .withStatus(StatusCodes.OK)
                 .withEntity(ContentTypes.APPLICATION_JSON, ByteString.fromString(
-                        new ObjectMapper().writer()
+                        new ObjectMapper().writer().withDefaultPrettyPrinter()
                 ))
     }
 
