@@ -28,7 +28,7 @@ public class Tester {
     AsyncHttpClient asyncHttpClient;
     ActorMaterializer materializer;
     ActorRef storage;
-
+    private static int parallelism = 10;
     public Tester(AsyncHttpClient asyncHttpClient, ActorSystem system, ActorMaterializer materializer){
         this.asyncHttpClient = asyncHttpClient;
         this.materializer = materializer;
@@ -38,7 +38,7 @@ public class Tester {
     public Flow<HttpRequest, HttpResponse, NotUsed> createRoute(){
         return Flow.of(HttpRequest.class)
                 .map(this::parseRequest)
-                .mapAsync(10,this::TestExecution)
+                .mapAsync(parallelism,this::TestExecution)
                 .map();
     }
 
@@ -65,7 +65,7 @@ public class Tester {
     public CompletionStage<TestResult> RunTest(Url test) {
         final Sink<Url, CompletionStage<Long>> testSink = Flow.of(Url.class)
                 .mapConcat(m -> Collections.nCopies(m.count, m.url))
-                .mapAsync(10, m->{
+                .mapAsync(parallelism, m->{
                     Instant StartRequestTime = Instant.now();
                     return asyncHttpClient.prepareGet(m).execute()
                             .toCompletableFuture()
