@@ -10,6 +10,7 @@ import akka.http.javadsl.model.Query;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.Pattern;
 import org.asynchttpclient.AsyncHttpClient;
@@ -71,6 +72,6 @@ public class Tester {
                                     Duration.between(StartRequestTime, Instant.now()).getSeconds()
                             ));
                 })
-                .toMat(Sink.fold(0,))
+                .toMat(Sink.fold(0L,Long::sum), Keep.right());
     }
 }
