@@ -37,5 +37,7 @@ public class Tester {
         return new Url(testUrl.get(), Integer.parseInt(count.get()));
     }
 
-    public 
+    public TestExecution(Url test){
+
+    }
 }
