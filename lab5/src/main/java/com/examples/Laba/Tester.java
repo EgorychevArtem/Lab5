@@ -7,11 +7,16 @@ import akka.actor.Props;
 //import akka.http.javadsl.model.HttpRequest;
 //import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.model.Query;
+import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Pattern;
 import org.asynchttpclient.AsyncHttpClient;
 import akka.http.javadsl.model.*;
+
+import java.time.Duration;
 import java.util.Optional;
+import java.util.concurrent.CompletionStage;
 
 public class Tester {
     AsyncHttpClient asyncHttpClient;
@@ -37,7 +42,7 @@ public class Tester {
         return new Url(testUrl.get(), Integer.parseInt(count.get()));
     }
 
-    public TestExecution(Url test){
-
+    public CompletionStage<TestResult> TestExecution(Url test){
+        return Patterns.ask(storage, test, Duration.ofSeconds(5))
     }
 }
