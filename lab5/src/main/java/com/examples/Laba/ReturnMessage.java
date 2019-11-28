@@ -14,6 +14,10 @@ public class ReturnMessage {
     }
 
     public Optional<TestResult> get(){
-        if(res)
+        if(result.res != null){
+            return Optional.of(result);
+        } else {
+            return Optional.empty();
+        }
     }
 }
