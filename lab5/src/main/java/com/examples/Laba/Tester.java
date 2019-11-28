@@ -24,8 +24,10 @@ public class Tester {
 
     public Flow<HttpRequest, HttpResponse, NotUsed> createRoute(){
         return Flow.of(HttpRequest.class)
-                .map(HttpRequest.class, m ->{
-                    Query query = m.
-                })
+                .map(this::parseRequest())
+    }
+
+    public Url parseRequest(HttpRequest req){
+
     }
 }
