@@ -57,6 +57,7 @@ public class Tester {
                 });
     }
 
-    private CompletionStage<TestResult> RunTest(Url test) {
+    public CompletionStage<TestResult> RunTest(Url test) {
+
     }
 }
