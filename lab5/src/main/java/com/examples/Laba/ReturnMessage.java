@@ -16,7 +16,7 @@ public class ReturnMessage {
     }
 
     public Optional<TestResult> get(){
-        if(result.res != null){
+        if(result.avgResult != null){
             return Optional.of(result);
         } else {
             return Optional.empty();

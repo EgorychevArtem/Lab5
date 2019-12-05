@@ -20,7 +20,7 @@ public class TestStorage extends AbstractActor {
                     );
                 })
                 .match(TestResult.class, m ->{
-                    storage.put(m.test, m.res);
+                    storage.put(m.test, m.avgResult);
                 })
                 .build();
     }

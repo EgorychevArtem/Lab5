@@ -4,10 +4,10 @@ import java.util.Optional;
 
 public class TestResult {
     Url test;
-    Long res;
+    Long avgResult;
 
-    TestResult(Url test, Long res){
-        this.res = res;
+    TestResult(Url test, Long avgResult){
+        this.avgResult = avgResult;
         this.test = test;
     }
 
@@ -15,7 +15,7 @@ public class TestResult {
         return test;
     }
 
-    public  Long getRes(){
-        return res;
+    public  Long getAvgResult(){
+        return avgResult;
     }
 }
