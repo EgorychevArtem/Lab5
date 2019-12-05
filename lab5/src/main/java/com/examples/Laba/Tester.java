@@ -28,10 +28,10 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 public class Tester {
+    private static int PARALLELISM = 10;
     AsyncHttpClient asyncHttpClient;
     ActorMaterializer materializer;
     ActorRef storage;
-    private static int parallelism = 10;
     public Tester(AsyncHttpClient asyncHttpClient, ActorSystem system, ActorMaterializer materializer){
         this.asyncHttpClient = asyncHttpClient;
         this.materializer = materializer;
@@ -40,11 +40,8 @@ public class Tester {
 
     public Flow<HttpRequest, HttpResponse, NotUsed> createRoute(){
         return Flow.of(HttpRequest.class)
-                //.map(this::parseRequest)
-                .map( request ->
-                        Query query = request.gerUri().query();
-                )
-                .mapAsync(parallelism,this::TestExecution)
+                .map(this::parseRequest)
+                .mapAsync(PARALLELISM,this::TestExecution)
                 .map(this::CreateResponse);
     }
 
@@ -80,7 +77,7 @@ public class Tester {
     public CompletionStage<TestResult> RunTest(Url test) {
         final Sink<Url, CompletionStage<Long>> testSink = Flow.of(Url.class)
                 .mapConcat(m -> Collections.nCopies(m.count, m.url))
-                .mapAsync(parallelism, m->{
+                .mapAsync(PARALLELISM, m->{
                     Instant StartRequestTime = Instant.now();
                     return asyncHttpClient.prepareGet(m).execute()
                             .toCompletableFuture()
